@@ -96,16 +96,16 @@ class ThemeNotifier extends _$ThemeNotifier {
 ThemeMode themeMode(ref) {
   final themeAsync = ref.watch(themeNotifierProvider);
 
-  return themeAsync.when(
-    data:
-        (ThemeOption themeOption) => switch (themeOption) {
-          ThemeOption.light => ThemeMode.light,
-          ThemeOption.dark => ThemeMode.dark,
-          ThemeOption.system => ThemeMode.system,
-        },
-    loading: () => ThemeMode.system, // Default while loading
-    error: (_, __) => ThemeMode.system, // Fallback on error
-  );
+  if (themeAsync.hasValue) {
+    final ThemeOption themeOption = themeAsync.value!;
+    return switch (themeOption) {
+      ThemeOption.light => ThemeMode.light,
+      ThemeOption.dark => ThemeMode.dark,
+      ThemeOption.system => ThemeMode.system,
+    };
+  }
+
+  return ThemeMode.system;
 }
 
 // Helper provider to check if current theme is dark
