@@ -1,8 +1,10 @@
+// lib/presentation/pages/splash/splash_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../providers/app_startup_provider.dart';
 import '../home/home_page.dart';
+import '../location_onboarding/location_onboarding_page.dart';
 
 class SplashPage extends ConsumerWidget {
   const SplashPage({super.key});
@@ -14,12 +16,22 @@ class SplashPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppColors.islamicGreen,
       body: appStartupState.when(
-        data: (_) {
-          // Navigate to home after successful initialization
+        data: (state) {
+          // Navigate based on whether user has location
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (_) => const HomePage()),
-            );
+            if (state.hasUserLocation) {
+              // User has location, go to home page
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (_) => const HomePage()),
+              );
+            } else {
+              // First time user, show location onboarding
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => const LocationOnboardingPage(),
+                ),
+              );
+            }
           });
           return const _SplashContent();
         },
@@ -33,6 +45,8 @@ class SplashPage extends ConsumerWidget {
     );
   }
 }
+
+// Keep existing _SplashContent and _ErrorContent widgets...
 
 class _SplashContent extends StatelessWidget {
   const _SplashContent();
