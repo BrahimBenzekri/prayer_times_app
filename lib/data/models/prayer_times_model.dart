@@ -30,13 +30,13 @@ abstract class PrayerTimesData with _$PrayerTimesData {
 @freezed
 abstract class Timings with _$Timings {
   const factory Timings({
-    required String fajr,
-    required String sunrise,
-    required String dhuhr,
-    required String asr,
-    required String sunset,
-    required String maghrib,
-    required String isha,
+    @JsonKey(name: 'Fajr') required String fajr,
+    @JsonKey(name: 'Sunrise') required String sunrise,
+    @JsonKey(name: 'Dhuhr') required String dhuhr,
+    @JsonKey(name: 'Asr') required String asr,
+    @JsonKey(name: 'Sunset') required String sunset,
+    @JsonKey(name: 'Maghrib') required String maghrib,
+    @JsonKey(name: 'Isha') required String isha,
   }) = _Timings;
 
   factory Timings.fromJson(Map<String, dynamic> json) =>

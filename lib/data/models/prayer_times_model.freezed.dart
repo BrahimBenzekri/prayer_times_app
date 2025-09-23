@@ -625,7 +625,7 @@ $MetaCopyWith<$Res> get meta {
 /// @nodoc
 mixin _$Timings {
 
- String get fajr; String get sunrise; String get dhuhr; String get asr; String get sunset; String get maghrib; String get isha;
+@JsonKey(name: 'Fajr') String get fajr;@JsonKey(name: 'Sunrise') String get sunrise;@JsonKey(name: 'Dhuhr') String get dhuhr;@JsonKey(name: 'Asr') String get asr;@JsonKey(name: 'Sunset') String get sunset;@JsonKey(name: 'Maghrib') String get maghrib;@JsonKey(name: 'Isha') String get isha;
 /// Create a copy of Timings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -658,7 +658,7 @@ abstract mixin class $TimingsCopyWith<$Res>  {
   factory $TimingsCopyWith(Timings value, $Res Function(Timings) _then) = _$TimingsCopyWithImpl;
 @useResult
 $Res call({
- String fajr, String sunrise, String dhuhr, String asr, String sunset, String maghrib, String isha
+@JsonKey(name: 'Fajr') String fajr,@JsonKey(name: 'Sunrise') String sunrise,@JsonKey(name: 'Dhuhr') String dhuhr,@JsonKey(name: 'Asr') String asr,@JsonKey(name: 'Sunset') String sunset,@JsonKey(name: 'Maghrib') String maghrib,@JsonKey(name: 'Isha') String isha
 });
 
 
@@ -769,7 +769,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String fajr,  String sunrise,  String dhuhr,  String asr,  String sunset,  String maghrib,  String isha)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'Fajr')  String fajr, @JsonKey(name: 'Sunrise')  String sunrise, @JsonKey(name: 'Dhuhr')  String dhuhr, @JsonKey(name: 'Asr')  String asr, @JsonKey(name: 'Sunset')  String sunset, @JsonKey(name: 'Maghrib')  String maghrib, @JsonKey(name: 'Isha')  String isha)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Timings() when $default != null:
 return $default(_that.fajr,_that.sunrise,_that.dhuhr,_that.asr,_that.sunset,_that.maghrib,_that.isha);case _:
@@ -790,7 +790,7 @@ return $default(_that.fajr,_that.sunrise,_that.dhuhr,_that.asr,_that.sunset,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String fajr,  String sunrise,  String dhuhr,  String asr,  String sunset,  String maghrib,  String isha)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'Fajr')  String fajr, @JsonKey(name: 'Sunrise')  String sunrise, @JsonKey(name: 'Dhuhr')  String dhuhr, @JsonKey(name: 'Asr')  String asr, @JsonKey(name: 'Sunset')  String sunset, @JsonKey(name: 'Maghrib')  String maghrib, @JsonKey(name: 'Isha')  String isha)  $default,) {final _that = this;
 switch (_that) {
 case _Timings():
 return $default(_that.fajr,_that.sunrise,_that.dhuhr,_that.asr,_that.sunset,_that.maghrib,_that.isha);case _:
@@ -810,7 +810,7 @@ return $default(_that.fajr,_that.sunrise,_that.dhuhr,_that.asr,_that.sunset,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String fajr,  String sunrise,  String dhuhr,  String asr,  String sunset,  String maghrib,  String isha)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'Fajr')  String fajr, @JsonKey(name: 'Sunrise')  String sunrise, @JsonKey(name: 'Dhuhr')  String dhuhr, @JsonKey(name: 'Asr')  String asr, @JsonKey(name: 'Sunset')  String sunset, @JsonKey(name: 'Maghrib')  String maghrib, @JsonKey(name: 'Isha')  String isha)?  $default,) {final _that = this;
 switch (_that) {
 case _Timings() when $default != null:
 return $default(_that.fajr,_that.sunrise,_that.dhuhr,_that.asr,_that.sunset,_that.maghrib,_that.isha);case _:
@@ -825,16 +825,16 @@ return $default(_that.fajr,_that.sunrise,_that.dhuhr,_that.asr,_that.sunset,_tha
 @JsonSerializable()
 
 class _Timings implements Timings {
-  const _Timings({required this.fajr, required this.sunrise, required this.dhuhr, required this.asr, required this.sunset, required this.maghrib, required this.isha});
+  const _Timings({@JsonKey(name: 'Fajr') required this.fajr, @JsonKey(name: 'Sunrise') required this.sunrise, @JsonKey(name: 'Dhuhr') required this.dhuhr, @JsonKey(name: 'Asr') required this.asr, @JsonKey(name: 'Sunset') required this.sunset, @JsonKey(name: 'Maghrib') required this.maghrib, @JsonKey(name: 'Isha') required this.isha});
   factory _Timings.fromJson(Map<String, dynamic> json) => _$TimingsFromJson(json);
 
-@override final  String fajr;
-@override final  String sunrise;
-@override final  String dhuhr;
-@override final  String asr;
-@override final  String sunset;
-@override final  String maghrib;
-@override final  String isha;
+@override@JsonKey(name: 'Fajr') final  String fajr;
+@override@JsonKey(name: 'Sunrise') final  String sunrise;
+@override@JsonKey(name: 'Dhuhr') final  String dhuhr;
+@override@JsonKey(name: 'Asr') final  String asr;
+@override@JsonKey(name: 'Sunset') final  String sunset;
+@override@JsonKey(name: 'Maghrib') final  String maghrib;
+@override@JsonKey(name: 'Isha') final  String isha;
 
 /// Create a copy of Timings
 /// with the given fields replaced by the non-null parameter values.
@@ -869,7 +869,7 @@ abstract mixin class _$TimingsCopyWith<$Res> implements $TimingsCopyWith<$Res> {
   factory _$TimingsCopyWith(_Timings value, $Res Function(_Timings) _then) = __$TimingsCopyWithImpl;
 @override @useResult
 $Res call({
- String fajr, String sunrise, String dhuhr, String asr, String sunset, String maghrib, String isha
+@JsonKey(name: 'Fajr') String fajr,@JsonKey(name: 'Sunrise') String sunrise,@JsonKey(name: 'Dhuhr') String dhuhr,@JsonKey(name: 'Asr') String asr,@JsonKey(name: 'Sunset') String sunset,@JsonKey(name: 'Maghrib') String maghrib,@JsonKey(name: 'Isha') String isha
 });
 
 

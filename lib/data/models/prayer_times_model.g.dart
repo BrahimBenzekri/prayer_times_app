@@ -36,23 +36,23 @@ Map<String, dynamic> _$PrayerTimesDataToJson(_PrayerTimesData instance) =>
     };
 
 _Timings _$TimingsFromJson(Map<String, dynamic> json) => _Timings(
-  fajr: json['fajr'] as String,
-  sunrise: json['sunrise'] as String,
-  dhuhr: json['dhuhr'] as String,
-  asr: json['asr'] as String,
-  sunset: json['sunset'] as String,
-  maghrib: json['maghrib'] as String,
-  isha: json['isha'] as String,
+  fajr: json['Fajr'] as String,
+  sunrise: json['Sunrise'] as String,
+  dhuhr: json['Dhuhr'] as String,
+  asr: json['Asr'] as String,
+  sunset: json['Sunset'] as String,
+  maghrib: json['Maghrib'] as String,
+  isha: json['Isha'] as String,
 );
 
 Map<String, dynamic> _$TimingsToJson(_Timings instance) => <String, dynamic>{
-  'fajr': instance.fajr,
-  'sunrise': instance.sunrise,
-  'dhuhr': instance.dhuhr,
-  'asr': instance.asr,
-  'sunset': instance.sunset,
-  'maghrib': instance.maghrib,
-  'isha': instance.isha,
+  'Fajr': instance.fajr,
+  'Sunrise': instance.sunrise,
+  'Dhuhr': instance.dhuhr,
+  'Asr': instance.asr,
+  'Sunset': instance.sunset,
+  'Maghrib': instance.maghrib,
+  'Isha': instance.isha,
 };
 
 _DateInfo _$DateInfoFromJson(Map<String, dynamic> json) => _DateInfo(
