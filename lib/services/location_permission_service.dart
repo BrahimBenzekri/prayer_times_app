@@ -1,4 +1,6 @@
 // lib/services/location_permission_service.dart
+import 'dart:developer';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -74,8 +76,10 @@ class LocationPermissionService {
 
       // Get current position
       Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high,
-        timeLimit: const Duration(seconds: 15),
+        locationSettings: AndroidSettings(
+          accuracy: LocationAccuracy.high,
+          timeLimit: Duration(seconds: 15),
+        ),
       );
 
       // Get city name from coordinates (reverse geocoding)
@@ -93,7 +97,7 @@ class LocationPermissionService {
           country = place.country ?? 'Unknown';
         }
       } catch (e) {
-        print('Reverse geocoding failed: $e');
+        log('Reverse geocoding failed: $e');
       }
 
       // Create user location object
@@ -110,7 +114,7 @@ class LocationPermissionService {
 
       return userLocation;
     } catch (e) {
-      print('Failed to get location: $e');
+      log('Failed to get location: $e');
       return null;
     }
   }

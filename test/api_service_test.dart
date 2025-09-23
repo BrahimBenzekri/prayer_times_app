@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prayer_times_app/services/api_service.dart';
@@ -30,8 +32,8 @@ void main() {
       expect(result.data.timings.maghrib, isNotEmpty);
       expect(result.data.timings.isha, isNotEmpty);
 
-      print('✅ Unit Test Passed: Prayer times fetched successfully');
-      print('📅 Date: ${result.data.date.readable}');
+      log('✅ Unit Test Passed: Prayer times fetched successfully');
+      log('📅 Date: ${result.data.date.readable}');
     });
 
     test('should fetch prayer times by city', () async {
@@ -46,7 +48,7 @@ void main() {
       expect(result.status, 'OK');
       expect(result.data.timings.fajr, isNotEmpty);
 
-      print('✅ Unit Test Passed: City prayer times fetched successfully');
+      log('✅ Unit Test Passed: City prayer times fetched successfully');
     });
 
     test('should convert Gregorian to Hijri', () async {
@@ -58,7 +60,7 @@ void main() {
       expect(result['status'], 'OK');
       expect(result['data']['hijri']['date'], isNotEmpty);
 
-      print('✅ Unit Test Passed: Hijri conversion working');
+      log('✅ Unit Test Passed: Hijri conversion working');
     });
   });
 }

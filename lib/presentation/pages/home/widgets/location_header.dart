@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class LocationHeader extends StatelessWidget {
-  const LocationHeader({super.key});
+  final String city;
+  final String country;
+
+  const LocationHeader({
+    super.key,
+    required this.city,
+    required this.country,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +22,7 @@ class LocationHeader extends StatelessWidget {
         ),
         SizedBox(width: 8),
         Text(
-          'New York City',
+          '$city, $country',
           style: TextStyle(
             fontSize: 16,
             color: AppColors.secondaryText,

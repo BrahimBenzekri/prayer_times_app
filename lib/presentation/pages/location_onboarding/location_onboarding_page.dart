@@ -74,7 +74,7 @@ class _LocationOnboardingPageState
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primaryText.withOpacity(0.1),
+                      color: AppColors.primaryText.withValues(alpha: 0.1),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -98,7 +98,6 @@ class _LocationOnboardingPageState
                     ),
                     const SizedBox(height: 12),
                     _buildFeatureItem('🕌', 'Accurate prayer times'),
-                    _buildFeatureItem('🧭', 'Correct Qibla direction'),
                     _buildFeatureItem('📅', 'Local Islamic calendar'),
                   ],
                 ),
@@ -228,7 +227,9 @@ class _LocationOnboardingPageState
       }
     } catch (e) {
       if (mounted) {
-        _showLocationError();
+        await ref
+            .read(locationPermissionServiceProvider)
+            .openLocationSettings();
       }
     } finally {
       if (mounted) {

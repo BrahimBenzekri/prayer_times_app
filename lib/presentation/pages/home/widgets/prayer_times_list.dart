@@ -1,40 +1,41 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../data/models/prayer_times_model.dart';
 
 class PrayerTimesList extends StatelessWidget {
-  const PrayerTimesList({super.key});
+  final Timings prayerTimes;
+
+  const PrayerTimesList({super.key, required this.prayerTimes});
 
   @override
   Widget build(BuildContext context) {
-    final prayerTimes = [
-      PrayerTime('Fajr', '05:35 AM', false),
-      PrayerTime('Dhuhr', '12:45 PM', false),
-      PrayerTime('Asr', '02:40 PM', true), // Current prayer
-      PrayerTime('Maggrih', '06:01 PM', false),
-      PrayerTime('Isha', '07:30 PM', false),
+    final prayers = [
+      PrayerTimeItem(prayerName: 'Fajr', prayerTime: prayerTimes.fajr),
+      PrayerTimeItem(prayerName: 'Dhuhr', prayerTime: prayerTimes.dhuhr),
+      PrayerTimeItem(prayerName: 'Asr', prayerTime: prayerTimes.asr),
+      PrayerTimeItem(prayerName: 'Maghrib', prayerTime: prayerTimes.maghrib),
+      PrayerTimeItem(prayerName: 'Isha', prayerTime: prayerTimes.isha),
     ];
 
-    return Column(
-      children: prayerTimes.map((prayer) => PrayerTimeItem(prayer: prayer)).toList(),
-    );
+    return Column(children: prayers);
   }
 }
 
-class PrayerTime {
-  final String name;
-  final String time;
-  final bool isCurrent;
-
-  PrayerTime(this.name, this.time, this.isCurrent);
-}
-
 class PrayerTimeItem extends StatelessWidget {
-  final PrayerTime prayer;
+  final String prayerName;
+  final String prayerTime;
 
-  const PrayerTimeItem({super.key, required this.prayer});
+  const PrayerTimeItem({
+    super.key,
+    required this.prayerName,
+    required this.prayerTime,
+  });
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Implement logic to determine if this is the current prayer
+    final bool isCurrent = true;
+
     return Container(
       margin: EdgeInsets.only(bottom: 8),
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -53,7 +54,7 @@ class PrayerTimeItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            prayer.name,
+            prayerName,
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w600,
@@ -63,14 +64,14 @@ class PrayerTimeItem extends StatelessWidget {
           Row(
             children: [
               Text(
-                prayer.time,
+                prayerTime,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: AppColors.primaryText,
                 ),
               ),
-              if (prayer.isCurrent) ...[
+              if (isCurrent) ...[
                 SizedBox(width: 8),
                 Container(
                   width: 12,

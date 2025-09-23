@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class DateDisplay extends StatelessWidget {
-  const DateDisplay({super.key});
+  final String gregorianDate;
+  final String hijriDate;
+
+  const DateDisplay({
+    super.key,
+    required this.gregorianDate,
+    required this.hijriDate,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +17,7 @@ class DateDisplay extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'September 20, 2025',
+          gregorianDate,
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
@@ -19,7 +26,7 @@ class DateDisplay extends StatelessWidget {
         ),
         SizedBox(height: 4),
         Text(
-          '19 Safar 1447 AH',
+          hijriDate,
           style: TextStyle(
             fontSize: 16,
             color: AppColors.islamicGreen,

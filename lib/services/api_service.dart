@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../core/constants/api_constants.dart';
@@ -27,7 +29,7 @@ Dio dio(ref) {
       LogInterceptor(
         requestBody: true,
         responseBody: true,
-        logPrint: (object) => print('🌐 API: $object'),
+        logPrint: (object) => log('🌐 API: ${object.toString()}'),
       ),
     );
   }
