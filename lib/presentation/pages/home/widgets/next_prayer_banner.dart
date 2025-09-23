@@ -10,7 +10,7 @@ class NextPrayerBanner extends StatefulWidget {
   const NextPrayerBanner({super.key, required this.timings});
 
   @override
-  _NextPrayerBannerState createState() => _NextPrayerBannerState();
+  State<NextPrayerBanner> createState() => _NextPrayerBannerState();
 }
 
 class _NextPrayerBannerState extends State<NextPrayerBanner> {
@@ -52,7 +52,9 @@ class _NextPrayerBannerState extends State<NextPrayerBanner> {
     if (nextPrayer.isEmpty) {
       // If all prayers for today have passed, show Fajr for the next day
       nextPrayer = 'Fajr';
-      nextPrayerTime = _parsePrayerTime(widget.timings.fajr).add(Duration(days: 1));
+      nextPrayerTime = _parsePrayerTime(
+        widget.timings.fajr,
+      ).add(Duration(days: 1));
     }
 
     final duration = nextPrayerTime.difference(now);
@@ -76,7 +78,13 @@ class _NextPrayerBannerState extends State<NextPrayerBanner> {
     final now = DateTime.now();
     final format = DateFormat("HH:mm");
     final dateTime = format.parse(time);
-    return DateTime(now.year, now.month, now.day, dateTime.hour, dateTime.minute);
+    return DateTime(
+      now.year,
+      now.month,
+      now.day,
+      dateTime.hour,
+      dateTime.minute,
+    );
   }
 
   String _formatDuration(Duration duration) {
@@ -112,10 +120,7 @@ class _NextPrayerBannerState extends State<NextPrayerBanner> {
           SizedBox(height: 4),
           Text(
             _timeUntilNextPrayer,
-            style: TextStyle(
-              fontSize: 16,
-              color: AppColors.primaryText,
-            ),
+            style: TextStyle(fontSize: 16, color: AppColors.primaryText),
           ),
         ],
       ),
