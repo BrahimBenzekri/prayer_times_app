@@ -37,7 +37,7 @@ class PrayerTimesList extends StatelessWidget {
 
     String currentPrayer = '';
 
-    for (var entry in prayerTimes.entries) {
+    for (var entry in prayerTimes.entries.toList().reversed) {
       final prayerTime = _parsePrayerTime(entry.value);
       if (prayerTime.isBefore(now)) {
         currentPrayer = entry.key;
