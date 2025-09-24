@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../data/models/prayer_times_model.dart';
 
@@ -7,14 +8,79 @@ class PrayerTimesList extends StatelessWidget {
 
   const PrayerTimesList({super.key, required this.prayerTimes});
 
+  Map<String, String> _getPrayerTimesMap() {
+    return {
+      'Fajr': prayerTimes.fajr,
+      'Dhuhr': prayerTimes.dhuhr,
+      'Asr': prayerTimes.asr,
+      'Maghrib': prayerTimes.maghrib,
+      'Isha': prayerTimes.isha,
+    };
+  }
+
+  DateTime _parsePrayerTime(String time) {
+    final now = DateTime.now();
+    final format = DateFormat("HH:mm");
+    final dateTime = format.parse(time);
+    return DateTime(
+      now.year,
+      now.month,
+      now.day,
+      dateTime.hour,
+      dateTime.minute,
+    );
+  }
+
+  String _updateCurrentPrayer() {
+    final now = DateTime.now();
+    final prayerTimes = _getPrayerTimesMap();
+
+    String currentPrayer = '';
+
+    for (var entry in prayerTimes.entries) {
+      final prayerTime = _parsePrayerTime(entry.value);
+      if (prayerTime.isBefore(now)) {
+        currentPrayer = entry.key;
+        break;
+      }
+    }
+
+    if (currentPrayer.isEmpty) {
+      currentPrayer = 'Isha';
+    }
+
+    return currentPrayer;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final currentPrayer = _updateCurrentPrayer();
     final prayers = [
-      PrayerTimeItem(prayerName: 'Fajr', prayerTime: prayerTimes.fajr),
-      PrayerTimeItem(prayerName: 'Dhuhr', prayerTime: prayerTimes.dhuhr),
-      PrayerTimeItem(prayerName: 'Asr', prayerTime: prayerTimes.asr),
-      PrayerTimeItem(prayerName: 'Maghrib', prayerTime: prayerTimes.maghrib),
-      PrayerTimeItem(prayerName: 'Isha', prayerTime: prayerTimes.isha),
+      PrayerTimeItem(
+        prayerName: 'Fajr',
+        prayerTime: prayerTimes.fajr,
+        isCurrent: currentPrayer == 'Fajr',
+      ),
+      PrayerTimeItem(
+        prayerName: 'Dhuhr',
+        prayerTime: prayerTimes.dhuhr,
+        isCurrent: currentPrayer == 'Dhuhr',
+      ),
+      PrayerTimeItem(
+        prayerName: 'Asr',
+        prayerTime: prayerTimes.asr,
+        isCurrent: currentPrayer == 'Asr',
+      ),
+      PrayerTimeItem(
+        prayerName: 'Maghrib',
+        prayerTime: prayerTimes.maghrib,
+        isCurrent: currentPrayer == 'Maghrib',
+      ),
+      PrayerTimeItem(
+        prayerName: 'Isha',
+        prayerTime: prayerTimes.isha,
+        isCurrent: currentPrayer == 'Isha',
+      ),
     ];
 
     return Column(children: prayers);
@@ -24,18 +90,17 @@ class PrayerTimesList extends StatelessWidget {
 class PrayerTimeItem extends StatelessWidget {
   final String prayerName;
   final String prayerTime;
+  final bool isCurrent;
 
   const PrayerTimeItem({
     super.key,
     required this.prayerName,
     required this.prayerTime,
+    required this.isCurrent,
   });
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Implement logic to determine if this is the current prayer
-    final bool isCurrent = true;
-
     return Container(
       margin: EdgeInsets.only(bottom: 8),
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
