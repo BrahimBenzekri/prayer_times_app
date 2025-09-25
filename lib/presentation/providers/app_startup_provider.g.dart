@@ -6,21 +6,44 @@ part of 'app_startup_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appStartupHash() => r'412a7565f01c3be7cef64ecc86fd8ca6b252eba5';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [appStartup].
 @ProviderFor(appStartup)
-final appStartupProvider = AutoDisposeFutureProvider<AppStartupState>.internal(
-  appStartup,
-  name: r'appStartupProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appStartupHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const appStartupProvider = AppStartupProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AppStartupRef = AutoDisposeFutureProviderRef<AppStartupState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AppStartupProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AppStartupState>,
+          AppStartupState,
+          FutureOr<AppStartupState>
+        >
+    with $FutureModifier<AppStartupState>, $FutureProvider<AppStartupState> {
+  const AppStartupProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'appStartupProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$appStartupHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AppStartupState> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AppStartupState> create(Ref ref) {
+    return appStartup(ref);
+  }
+}
+
+String _$appStartupHash() => r'017e332a6d0e463726faf98f7aa3e2996f2343f7';

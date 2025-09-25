@@ -6,26 +6,53 @@ part of 'location_permission_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$locationPermissionServiceHash() =>
-    r'4365cd05698efc17b8f0667b25c8f3f206397cb7';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [locationPermissionService].
 @ProviderFor(locationPermissionService)
-final locationPermissionServiceProvider =
-    AutoDisposeProvider<LocationPermissionService>.internal(
-      locationPermissionService,
-      name: r'locationPermissionServiceProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$locationPermissionServiceHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+const locationPermissionServiceProvider = LocationPermissionServiceProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LocationPermissionServiceRef =
-    AutoDisposeProviderRef<LocationPermissionService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class LocationPermissionServiceProvider
+    extends
+        $FunctionalProvider<
+          LocationPermissionService,
+          LocationPermissionService,
+          LocationPermissionService
+        >
+    with $Provider<LocationPermissionService> {
+  const LocationPermissionServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'locationPermissionServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$locationPermissionServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<LocationPermissionService> $createElement(
+    $ProviderPointer pointer,
+  ) => $ProviderElement(pointer);
+
+  @override
+  LocationPermissionService create(Ref ref) {
+    return locationPermissionService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(LocationPermissionService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<LocationPermissionService>(value),
+    );
+  }
+}
+
+String _$locationPermissionServiceHash() =>
+    r'31f75e63de02981caa2031716c96da1495a93647';

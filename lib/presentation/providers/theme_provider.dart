@@ -34,7 +34,7 @@ enum ThemeOption {
 
 // SharedPreferences provider for dependency injection
 @riverpod
-Future<SharedPreferences> sharedPreferences(ref) async {
+Future<SharedPreferences> sharedPreferences(Ref ref) async {
   return await SharedPreferences.getInstance();
 }
 
@@ -93,8 +93,8 @@ class ThemeNotifier extends _$ThemeNotifier {
 
 // Convert ThemeOption to Flutter's ThemeMode
 @riverpod
-ThemeMode themeMode(ref) {
-  final themeAsync = ref.watch(themeNotifierProvider);
+ThemeMode themeMode(Ref ref) {
+  final themeAsync = ref.watch(themeProvider);
 
   if (themeAsync.hasValue) {
     final ThemeOption themeOption = themeAsync.value!;
@@ -110,7 +110,7 @@ ThemeMode themeMode(ref) {
 
 // Helper provider to check if current theme is dark
 @riverpod
-bool isDarkMode(ref, BuildContext context) {
+bool isDarkMode(Ref ref, BuildContext context) {
   final ThemeMode themeMode = ref.watch(themeModeProvider);
 
   return switch (themeMode) {
@@ -123,8 +123,8 @@ bool isDarkMode(ref, BuildContext context) {
 
 // Provider for getting current theme option safely
 @riverpod
-ThemeOption currentThemeOption(ref) {
-  final themeAsync = ref.watch(themeNotifierProvider);
+ThemeOption currentThemeOption(Ref ref) {
+  final themeAsync = ref.watch(themeProvider);
   return themeAsync.maybeWhen(
     data: (theme) => theme,
     orElse: () => ThemeOption.system,

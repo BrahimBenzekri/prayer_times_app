@@ -91,7 +91,9 @@ class _NextPrayerBannerState extends State<NextPrayerBanner> {
     final hours = duration.inHours;
     final minutes = duration.inMinutes.remainder(60);
     final seconds = duration.inSeconds.remainder(60);
-    return 'in $hours hours, $minutes minutes and $seconds seconds';
+    return hours == 0
+        ? 'in $minutes minutes and $seconds seconds'
+        : 'in $hours hours, $minutes minutes and $seconds seconds';
   }
 
   @override

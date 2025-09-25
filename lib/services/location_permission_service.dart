@@ -10,7 +10,7 @@ import 'location_storage_service.dart';
 part 'location_permission_service.g.dart';
 
 @riverpod
-LocationPermissionService locationPermissionService(ref) {
+LocationPermissionService locationPermissionService(Ref ref) {
   return LocationPermissionService(ref.read(locationStorageServiceProvider));
 }
 

@@ -36,7 +36,7 @@ class AppTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.pureWhite,
         elevation: 2,
         shadowColor: AppColors.primaryText.withValues(alpha: 0.1),
@@ -104,7 +104,7 @@ class AppTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: const Color(0xFF2A2A2A),
         elevation: 4,
         shadowColor: Colors.black26,

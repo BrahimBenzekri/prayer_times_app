@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'location_storage_service.g.dart';
 
 @riverpod
-LocationStorageService locationStorageService(ref) {
+LocationStorageService locationStorageService(Ref ref) {
   return LocationStorageService();
 }
 

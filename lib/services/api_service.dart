@@ -10,7 +10,7 @@ part 'api_service.g.dart';
 
 // Dio provider for dependency injection
 @riverpod
-Dio dio(ref) {
+Dio dio(Ref ref) {
   final dio = Dio(
     BaseOptions(
       baseUrl: ApiConstants.baseUrl,
@@ -39,7 +39,7 @@ Dio dio(ref) {
 
 // API service provider
 @riverpod
-ApiService apiService(ref) {
+ApiService apiService(Ref ref) {
   return ApiService(ref.read(dioProvider));
 }
 

@@ -14,7 +14,7 @@ class AppStartupState {
 }
 
 @riverpod
-Future<AppStartupState> appStartup(ref) async {
+Future<AppStartupState> appStartup(Ref ref) async {
   // Initialize all critical dependencies here
 
   // 1. Initialize SharedPreferences (implicitly initialized by other providers)
@@ -29,7 +29,7 @@ Future<AppStartupState> appStartup(ref) async {
   );
 
   // 3. Pre-warm theme provider
-  await ref.read(themeNotifierProvider.future);
+  await ref.read(themeProvider.future);
 
   // 4. Check for existing user location
   final locationService = ref.read(locationStorageServiceProvider);

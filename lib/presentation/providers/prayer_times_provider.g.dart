@@ -6,40 +6,85 @@ part of 'prayer_times_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$prayerTimesHash() => r'ccd8415e67880a1161f9fbbc244b9780fd774744';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [prayerTimes].
 @ProviderFor(prayerTimes)
-final prayerTimesProvider =
-    AutoDisposeFutureProvider<PrayerTimesResponse>.internal(
-      prayerTimes,
-      name: r'prayerTimesProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$prayerTimesHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+const prayerTimesProvider = PrayerTimesProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef PrayerTimesRef = AutoDisposeFutureProviderRef<PrayerTimesResponse>;
-String _$userLocationHash() => r'976b26729e18c30c5abe48211bf50483946757db';
+final class PrayerTimesProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<PrayerTimesResponse>,
+          PrayerTimesResponse,
+          FutureOr<PrayerTimesResponse>
+        >
+    with
+        $FutureModifier<PrayerTimesResponse>,
+        $FutureProvider<PrayerTimesResponse> {
+  const PrayerTimesProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'prayerTimesProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [userLocation].
+  @override
+  String debugGetCreateSourceHash() => _$prayerTimesHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<PrayerTimesResponse> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<PrayerTimesResponse> create(Ref ref) {
+    return prayerTimes(ref);
+  }
+}
+
+String _$prayerTimesHash() => r'ae093f32556455527562952f53f6d090b5c64a6b';
+
 @ProviderFor(userLocation)
-final userLocationProvider = AutoDisposeFutureProvider<UserLocation?>.internal(
-  userLocation,
-  name: r'userLocationProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$userLocationHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const userLocationProvider = UserLocationProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef UserLocationRef = AutoDisposeFutureProviderRef<UserLocation?>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class UserLocationProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<UserLocation?>,
+          UserLocation?,
+          FutureOr<UserLocation?>
+        >
+    with $FutureModifier<UserLocation?>, $FutureProvider<UserLocation?> {
+  const UserLocationProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'userLocationProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$userLocationHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<UserLocation?> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<UserLocation?> create(Ref ref) {
+    return userLocation(ref);
+  }
+}
+
+String _$userLocationHash() => r'b84c0cc745dc3adb8c24c792235d1ffa02f5bfa0';

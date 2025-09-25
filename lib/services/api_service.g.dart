@@ -6,37 +6,86 @@ part of 'api_service.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dioHash() => r'95acc80d9624111bab4a5ab80700753e6a99f953';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
 
-/// See also [dio].
 @ProviderFor(dio)
-final dioProvider = AutoDisposeProvider<Dio>.internal(
-  dio,
-  name: r'dioProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$dioHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const dioProvider = DioProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef DioRef = AutoDisposeProviderRef<Dio>;
-String _$apiServiceHash() => r'7b010788dfd774ec66666a8615a9ead80cd6cf77';
+final class DioProvider extends $FunctionalProvider<Dio, Dio, Dio>
+    with $Provider<Dio> {
+  const DioProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'dioProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-/// See also [apiService].
+  @override
+  String debugGetCreateSourceHash() => _$dioHash();
+
+  @$internal
+  @override
+  $ProviderElement<Dio> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  Dio create(Ref ref) {
+    return dio(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(Dio value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<Dio>(value),
+    );
+  }
+}
+
+String _$dioHash() => r'483a71a598ec3d557449b4b8561ad7ed0910675a';
+
 @ProviderFor(apiService)
-final apiServiceProvider = AutoDisposeProvider<ApiService>.internal(
-  apiService,
-  name: r'apiServiceProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$apiServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const apiServiceProvider = ApiServiceProvider._();
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ApiServiceRef = AutoDisposeProviderRef<ApiService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class ApiServiceProvider
+    extends $FunctionalProvider<ApiService, ApiService, ApiService>
+    with $Provider<ApiService> {
+  const ApiServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'apiServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$apiServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ApiService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  ApiService create(Ref ref) {
+    return apiService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ApiService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ApiService>(value),
+    );
+  }
+}
+
+String _$apiServiceHash() => r'983361584fdff05743eb08586a8e9867a8c522de';

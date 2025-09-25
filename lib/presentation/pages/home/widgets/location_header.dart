@@ -5,21 +5,13 @@ class LocationHeader extends StatelessWidget {
   final String city;
   final String country;
 
-  const LocationHeader({
-    super.key,
-    required this.city,
-    required this.country,
-  });
+  const LocationHeader({super.key, required this.city, required this.country});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          Icons.location_on,
-          color: AppColors.islamicGreen,
-          size: 20,
-        ),
+        Icon(Icons.location_on, color: AppColors.islamicGreen, size: 20),
         SizedBox(width: 8),
         Text(
           '$city, $country',
@@ -27,6 +19,15 @@ class LocationHeader extends StatelessWidget {
             fontSize: 16,
             color: AppColors.secondaryText,
             fontWeight: FontWeight.w500,
+          ),
+        ),
+        Spacer(),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.edit_location_alt,
+            color: AppColors.islamicGreen,
+            size: 20,
           ),
         ),
       ],
