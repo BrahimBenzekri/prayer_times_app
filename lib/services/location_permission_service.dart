@@ -42,43 +42,38 @@ class LocationPermissionService {
   }
 
   // Request location permission
-  Future<LocationPermissionStatus> requestPermission() async {
+  Future<LocationPermissionStatus> requestLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
+      // Location services are not enabled, don't continue
+      // to access the position and request users of the
+      // App to enable the location services.
       return LocationPermissionStatus.serviceDisabled;
     }
-
     LocationPermission permission = await Geolocator.requestPermission();
 
-    switch (permission) {
-      case LocationPermission.denied:
-        return LocationPermissionStatus.denied;
-      case LocationPermission.deniedForever:
-        return LocationPermissionStatus.deniedForever;
-      case LocationPermission.whileInUse:
-      case LocationPermission.always:
-        return LocationPermissionStatus.granted;
-      default:
-        return LocationPermissionStatus.denied;
+    if (permission == LocationPermission.denied) {
+      return LocationPermissionStatus.denied;
     }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return LocationPermissionStatus.deniedForever;
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return LocationPermissionStatus.granted;
   }
 
   // Get current location and save it
   Future<UserLocation?> getCurrentLocationAndSave() async {
     try {
-      final permissionStatus = await checkPermissionStatus();
-      if (permissionStatus != LocationPermissionStatus.granted) {
-        final requested = await requestPermission();
-        if (requested != LocationPermissionStatus.granted) {
-          return null;
-        }
-      }
-
       // Get current position
       Position position = await Geolocator.getCurrentPosition(
         locationSettings: AndroidSettings(
           accuracy: LocationAccuracy.high,
-          timeLimit: Duration(seconds: 15),
+          timeLimit: Duration(seconds: 30),
         ),
       );
 

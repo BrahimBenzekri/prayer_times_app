@@ -1,6 +1,7 @@
 // lib/presentation/pages/location_onboarding/location_onboarding_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../services/location_permission_service.dart';
 import '../home/home_page.dart';
@@ -130,7 +131,7 @@ class _LocationOnboardingPageState
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.white,
+                                    AppColors.charcoal,
                                   ),
                                 ),
                               ),
@@ -140,6 +141,7 @@ class _LocationOnboardingPageState
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
+                                  color: AppColors.charcoal,
                                 ),
                               ),
                             ],
@@ -210,26 +212,37 @@ class _LocationOnboardingPageState
 
     try {
       final locationService = ref.read(locationPermissionServiceProvider);
-      final location = await locationService.getCurrentLocationAndSave();
+      final status = await locationService.requestLocation();
 
-      if (location != null) {
-        // Success! Navigate to home page
-        if (mounted) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => const HomePage()),
-          );
-        }
-      } else {
-        // Handle permission denied or other errors
-        if (mounted) {
-          _showLocationError();
-        }
+      switch (status) {
+        case LocationPermissionStatus.granted:
+          final location = await locationService.getCurrentLocationAndSave();
+          if (location != null && mounted) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+          }
+          break;
+        case LocationPermissionStatus.denied:
+          if (mounted) {
+            _showPermissionDeniedDialog();
+          }
+          break;
+        case LocationPermissionStatus.deniedForever:
+          if (mounted) {
+            _showPermissionDeniedForeverDialog();
+          }
+          break;
+        case LocationPermissionStatus.serviceDisabled:
+          if (mounted) {
+            _showServiceDisabledDialog();
+          }
+          break;
       }
     } catch (e) {
+      // Handle any other unexpected errors
       if (mounted) {
-        await ref
-            .read(locationPermissionServiceProvider)
-            .openLocationSettings();
+        _showLocationError();
       }
     } finally {
       if (mounted) {
@@ -265,6 +278,89 @@ class _LocationOnboardingPageState
                   await ref
                       .read(locationPermissionServiceProvider)
                       .openLocationSettings();
+                },
+                child: const Text('Open Settings'),
+              ),
+            ],
+          ),
+    );
+  }
+
+  void _showPermissionDeniedDialog() {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: const Text('Location Permission Denied'),
+            content: const Text(
+              'To automatically get your prayer times, please allow this app to access your location.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  _getCurrentLocation();
+                },
+                child: const Text('Retry'),
+              ),
+            ],
+          ),
+    );
+  }
+
+  void _showPermissionDeniedForeverDialog() {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: const Text('Location Permission Permanently Denied'),
+            content: const Text(
+              'You have permanently denied location permissions. To enable it, please go to your app settings.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () async {
+                  Navigator.pop(context);
+                  await ref
+                      .read(locationPermissionServiceProvider)
+                      .openLocationSettings();
+                },
+                child: const Text('Open Settings'),
+              ),
+            ],
+          ),
+    );
+  }
+
+  void _showServiceDisabledDialog() {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: const Text('Location Services Disabled'),
+            content: const Text(
+              'Please enable location services (GPS) on your device to continue.',
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () async {
+                  // Geolocator provides a helper to open location settings
+                  await Geolocator.openLocationSettings();
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                  }
                 },
                 child: const Text('Open Settings'),
               ),
