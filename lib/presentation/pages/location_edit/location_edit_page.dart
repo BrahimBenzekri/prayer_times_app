@@ -4,6 +4,7 @@ import 'package:geolocator/geolocator.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../services/location_permission_service.dart';
 import '../../providers/prayer_times_provider.dart';
+import '../city_search/city_search_page.dart';
 
 class LocationEditPage extends ConsumerStatefulWidget {
   const LocationEditPage({super.key});
@@ -72,6 +73,17 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
+            ),
+            const SizedBox(height: 12),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CitySearchPage(),
+                  ),
+                );
+              },
+              child: const Text('Search by City'),
             ),
           ],
         ),

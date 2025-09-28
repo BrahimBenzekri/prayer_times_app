@@ -28,6 +28,7 @@ dependencies:
   freezed: ^3.1.0
   json_serializable: ^6.9.5
   flutter_lints: ^6.0.0
+  flutter_typeahead: ^5.2.0
 
 dev_dependencies:
   flutter_test:

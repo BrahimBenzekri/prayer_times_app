@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../services/location_permission_service.dart';
+import '../city_search/city_search_page.dart';
 import '../home/home_page.dart';
 
 class LocationOnboardingPage extends ConsumerStatefulWidget {
@@ -355,9 +356,8 @@ class _LocationOnboardingPageState
   }
 
   void _skipForNow() {
-    // Navigate to home page without location
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const HomePage()),
+      MaterialPageRoute(builder: (context) => const CitySearchPage()),
     );
   }
 }
