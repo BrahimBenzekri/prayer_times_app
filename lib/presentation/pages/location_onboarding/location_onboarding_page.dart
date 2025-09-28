@@ -36,8 +36,11 @@ class _LocationOnboardingPageState
                   color: theme.colorScheme.primary,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(Icons.mosque,
-                    size: 80, color: theme.colorScheme.onPrimary),
+                child: Icon(
+                  Icons.mosque,
+                  size: 80,
+                  color: theme.colorScheme.onPrimary,
+                ),
               ),
 
               const SizedBox(height: 32),
@@ -57,7 +60,7 @@ class _LocationOnboardingPageState
               Text(
                 'To show you accurate prayer times, we need to know your location',
                 style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                   height: 1.5,
                 ),
                 textAlign: TextAlign.center,
@@ -73,7 +76,7 @@ class _LocationOnboardingPageState
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: theme.shadowColor.withOpacity(0.1),
+                      color: theme.shadowColor.withValues(alpha: 0.1),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -114,25 +117,26 @@ class _LocationOnboardingPageState
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  child: _isGettingLocation
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  theme.colorScheme.onPrimary,
+                  child:
+                      _isGettingLocation
+                          ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    theme.colorScheme.onPrimary,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 12),
-                            const Text('Getting your location...'),
-                          ],
-                        )
-                      : const Text('Allow Location Access'),
+                              const SizedBox(width: 12),
+                              const Text('Getting your location...'),
+                            ],
+                          )
+                          : const Text('Allow Location Access'),
                 ),
               ),
 
@@ -144,7 +148,7 @@ class _LocationOnboardingPageState
                 child: Text(
                   'Skip for now (search by city)',
                   style: TextStyle(
-                    color: theme.colorScheme.onSurface.withOpacity(0.6),
+                    color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     fontSize: 14,
                   ),
                 ),
@@ -157,7 +161,7 @@ class _LocationOnboardingPageState
                 'Your location is only stored on your device and never shared.',
                 style: theme.textTheme.bodySmall?.copyWith(
                   fontStyle: FontStyle.italic,
-                  color: theme.colorScheme.onSurface.withOpacity(0.5),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -178,7 +182,7 @@ class _LocationOnboardingPageState
           Text(
             text,
             style: theme.textTheme.bodyMedium?.copyWith(
-              color: theme.colorScheme.onSurface.withOpacity(0.7),
+              color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
             ),
           ),
         ],

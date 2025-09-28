@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../providers/prayer_times_provider.dart';
+import '../../providers/theme_provider.dart';
 import 'widgets/location_header.dart';
 import 'widgets/date_display.dart';
 import 'widgets/prayer_times_list.dart';
@@ -20,12 +20,25 @@ class HomePage extends ConsumerWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.mosque, color: AppColors.pureWhite, size: 20),
-            SizedBox(width: 8),
-            Text('Prayer Times'),
+            const Icon(Icons.mosque, size: 20),
+            const SizedBox(width: 8),
+            const Text('Prayer Times'),
           ],
         ),
-        actions: null,
+        actions: [
+          Consumer(
+            builder: (context, ref, child) {
+              final themeOption = ref.watch(currentThemeOptionProvider);
+              return IconButton(
+                icon: Icon(themeOption.icon),
+                onPressed: () {
+                  ref.read(themeProvider.notifier).toggleTheme();
+                },
+                tooltip: 'Toggle Theme (${themeOption.displayName})',
+              );
+            },
+          ),
+        ],
         centerTitle: true,
       ),
       body: userLocationData.when(
