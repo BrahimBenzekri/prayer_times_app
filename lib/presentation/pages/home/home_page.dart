@@ -25,6 +25,7 @@ class HomePage extends ConsumerWidget {
             Text('Prayer Times'),
           ],
         ),
+        actions: null,
         centerTitle: true,
       ),
       body: userLocationData.when(
