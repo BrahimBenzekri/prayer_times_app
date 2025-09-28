@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
-import '../../../core/theme/app_colors.dart';
 import '../../../services/location_permission_service.dart';
 import '../home/home_page.dart';
 
@@ -20,8 +19,9 @@ class _LocationOnboardingPageState
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: AppColors.lightGray,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -33,21 +33,20 @@ class _LocationOnboardingPageState
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: AppColors.islamicGreen,
+                  color: theme.colorScheme.primary,
                   shape: BoxShape.circle,
                 ),
-                child: const Icon(Icons.mosque, size: 80, color: Colors.white),
+                child: Icon(Icons.mosque,
+                    size: 80, color: theme.colorScheme.onPrimary),
               ),
 
               const SizedBox(height: 32),
 
               // Title
-              const Text(
+              Text(
                 'Welcome to Prayer Times',
-                style: TextStyle(
-                  fontSize: 28,
+                style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: AppColors.primaryText,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -57,9 +56,8 @@ class _LocationOnboardingPageState
               // Subtitle
               Text(
                 'To show you accurate prayer times, we need to know your location',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppColors.secondaryText,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.colorScheme.onSurface.withOpacity(0.7),
                   height: 1.5,
                 ),
                 textAlign: TextAlign.center,
@@ -71,11 +69,11 @@ class _LocationOnboardingPageState
               Container(
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: theme.cardColor,
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: AppColors.primaryText.withValues(alpha: 0.1),
+                      color: theme.shadowColor.withOpacity(0.1),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -86,20 +84,18 @@ class _LocationOnboardingPageState
                     Icon(
                       Icons.location_on,
                       size: 48,
-                      color: AppColors.islamicGreen,
+                      color: theme.colorScheme.primary,
                     ),
                     const SizedBox(height: 16),
-                    const Text(
+                    Text(
                       'Your location helps us provide:',
-                      style: TextStyle(
-                        fontSize: 16,
+                      style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: AppColors.primaryText,
                       ),
                     ),
                     const SizedBox(height: 12),
-                    _buildFeatureItem('🕌', 'Accurate prayer times'),
-                    _buildFeatureItem('📅', 'Local Islamic calendar'),
+                    _buildFeatureItem(theme, '🕌', 'Accurate prayer times'),
+                    _buildFeatureItem(theme, '📅', 'Local Islamic calendar'),
                   ],
                 ),
               ),
@@ -112,47 +108,31 @@ class _LocationOnboardingPageState
                 child: ElevatedButton(
                   onPressed: _isGettingLocation ? null : _getCurrentLocation,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.islamicGreen,
-                    foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                     ),
-                    elevation: 2,
                   ),
-                  child:
-                      _isGettingLocation
-                          ? const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    AppColors.charcoal,
-                                  ),
+                  child: _isGettingLocation
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  theme.colorScheme.onPrimary,
                                 ),
                               ),
-                              SizedBox(width: 12),
-                              Text(
-                                'Getting your location...',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.charcoal,
-                                ),
-                              ),
-                            ],
-                          )
-                          : const Text(
-                            'Allow Location Access',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
                             ),
-                          ),
+                            const SizedBox(width: 12),
+                            const Text('Getting your location...'),
+                          ],
+                        )
+                      : const Text('Allow Location Access'),
                 ),
               ),
 
@@ -164,7 +144,7 @@ class _LocationOnboardingPageState
                 child: Text(
                   'Skip for now (search by city)',
                   style: TextStyle(
-                    color: AppColors.secondaryText,
+                    color: theme.colorScheme.onSurface.withOpacity(0.6),
                     fontSize: 14,
                   ),
                 ),
@@ -175,10 +155,9 @@ class _LocationOnboardingPageState
               // Privacy note
               Text(
                 'Your location is only stored on your device and never shared.',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: AppColors.mutedText,
+                style: theme.textTheme.bodySmall?.copyWith(
                   fontStyle: FontStyle.italic,
+                  color: theme.colorScheme.onSurface.withOpacity(0.5),
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -189,7 +168,7 @@ class _LocationOnboardingPageState
     );
   }
 
-  Widget _buildFeatureItem(String emoji, String text) {
+  Widget _buildFeatureItem(ThemeData theme, String emoji, String text) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
@@ -198,7 +177,9 @@ class _LocationOnboardingPageState
           const SizedBox(width: 12),
           Text(
             text,
-            style: TextStyle(fontSize: 14, color: AppColors.secondaryText),
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurface.withOpacity(0.7),
+            ),
           ),
         ],
       ),
