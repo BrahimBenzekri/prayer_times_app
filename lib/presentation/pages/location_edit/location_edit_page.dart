@@ -75,7 +75,7 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
               ),
             ),
             const SizedBox(height: 12),
-            TextButton(
+            ElevatedButton.icon(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
@@ -83,7 +83,19 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
                   ),
                 );
               },
-              child: const Text('Search by City'),
+              icon: const Icon(Icons.location_city),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.islamicGreen,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              label: const Text(
+                'Search by City',
+                style: TextStyle(fontSize: 16),
+              ),
             ),
           ],
         ),
