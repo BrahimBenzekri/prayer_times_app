@@ -35,4 +35,6 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  assets:
+    - assets/data/
   uses-material-design: true
