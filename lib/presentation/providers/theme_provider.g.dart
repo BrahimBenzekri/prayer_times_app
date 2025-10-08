@@ -134,7 +134,7 @@ final class ThemeModeProvider
   }
 }
 
-String _$themeModeHash() => r'fce81769341c34bf7387508fc76f1543e7e8f653';
+String _$themeModeHash() => r'0864340f7dcef372801275cd5cfff6466b1e3ed9';
 
 @ProviderFor(isDarkMode)
 const isDarkModeProvider = IsDarkModeFamily._();
@@ -252,4 +252,4 @@ final class CurrentThemeOptionProvider
 }
 
 String _$currentThemeOptionHash() =>
-    r'579bbf0899f10a1584dde44625301f5066b9c661';
+    r'39f38a58055b2947e56f8029715521adbaec110e';
