@@ -20,7 +20,7 @@ class CitySearchField extends ConsumerWidget {
           hintText: 'Please select a country first',
           prefixIcon: const Icon(Icons.location_city),
           border: const OutlineInputBorder(),
-          fillColor: Colors.grey[100],
+          fillColor: Theme.of(context).canvasColor,
           filled: true,
         ),
       );
