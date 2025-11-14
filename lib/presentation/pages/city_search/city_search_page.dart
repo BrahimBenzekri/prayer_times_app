@@ -11,6 +11,9 @@ class CitySearchPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = GlobalKey<FormState>();
 
+    final selectedCountry = ref.watch(selectedCountryProvider);
+    final selectedCity = ref.watch(selectedCityProvider);
+
     void saveLocation() {
       final country = ref.read(selectedCountryProvider);
       final city = ref.read(selectedCityProvider);
@@ -36,7 +39,10 @@ class CitySearchPage extends ConsumerWidget {
               const CitySearchField(),
               const Spacer(),
               ElevatedButton(
-                onPressed: saveLocation,
+                onPressed:
+                    selectedCountry != null && selectedCity != null
+                        ? saveLocation
+                        : null,
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   textStyle: const TextStyle(
