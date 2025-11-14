@@ -52,6 +52,7 @@ class CountrySearchField extends ConsumerWidget {
       },
       onSelected: (country) {
         ref.read(selectedCountryProvider.notifier).select(country);
+        FocusScope.of(context).unfocus();
       },
       emptyBuilder:
           (context) => const Padding(

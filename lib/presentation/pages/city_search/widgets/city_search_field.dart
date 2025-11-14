@@ -66,6 +66,7 @@ class CitySearchField extends ConsumerWidget {
       },
       onSelected: (city) {
         ref.read(selectedCityProvider.notifier).select(city);
+        FocusScope.of(context).unfocus();
       },
       emptyBuilder:
           (context) => const Padding(
