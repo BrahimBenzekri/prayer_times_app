@@ -99,7 +99,7 @@ class _NextPrayerBannerState extends State<NextPrayerBanner> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 16),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
       decoration: BoxDecoration(
         gradient: LinearGradient(

@@ -48,43 +48,4 @@ final class PrayerTimesProvider
   }
 }
 
-String _$prayerTimesHash() => r'ae093f32556455527562952f53f6d090b5c64a6b';
-
-@ProviderFor(userLocation)
-const userLocationProvider = UserLocationProvider._();
-
-final class UserLocationProvider
-    extends
-        $FunctionalProvider<
-          AsyncValue<UserLocation?>,
-          UserLocation?,
-          FutureOr<UserLocation?>
-        >
-    with $FutureModifier<UserLocation?>, $FutureProvider<UserLocation?> {
-  const UserLocationProvider._()
-    : super(
-        from: null,
-        argument: null,
-        retry: null,
-        name: r'userLocationProvider',
-        isAutoDispose: true,
-        dependencies: null,
-        $allTransitiveDependencies: null,
-      );
-
-  @override
-  String debugGetCreateSourceHash() => _$userLocationHash();
-
-  @$internal
-  @override
-  $FutureProviderElement<UserLocation?> $createElement(
-    $ProviderPointer pointer,
-  ) => $FutureProviderElement(pointer);
-
-  @override
-  FutureOr<UserLocation?> create(Ref ref) {
-    return userLocation(ref);
-  }
-}
-
-String _$userLocationHash() => r'b84c0cc745dc3adb8c24c792235d1ffa02f5bfa0';
+String _$prayerTimesHash() => r'504d055803732625be649aa7c4861a92fde3da07';

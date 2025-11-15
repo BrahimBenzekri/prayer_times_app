@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
-import '../../../services/location_permission_service.dart';
+import 'package:prayer_times_app/services/location_service.dart';
+
 import '../city_search/city_search_page.dart';
 import '../home/home_page.dart';
 
@@ -197,7 +198,7 @@ class _LocationOnboardingPageState
     });
 
     try {
-      final locationService = ref.read(locationPermissionServiceProvider);
+      final locationService = ref.read(locationServiceProvider);
       final status = await locationService.requestLocation();
 
       switch (status) {
@@ -262,7 +263,7 @@ class _LocationOnboardingPageState
                 onPressed: () async {
                   Navigator.pop(context);
                   await ref
-                      .read(locationPermissionServiceProvider)
+                      .read(locationServiceProvider)
                       .openLocationSettings();
                 },
                 child: const Text('Open Settings'),
@@ -316,7 +317,7 @@ class _LocationOnboardingPageState
                 onPressed: () async {
                   Navigator.pop(context);
                   await ref
-                      .read(locationPermissionServiceProvider)
+                      .read(locationServiceProvider)
                       .openLocationSettings();
                 },
                 child: const Text('Open Settings'),

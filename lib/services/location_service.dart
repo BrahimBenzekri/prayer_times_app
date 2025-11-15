@@ -1,23 +1,25 @@
-// lib/services/location_permission_service.dart
+// lib/services/location_service.dart
 import 'dart:developer';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:prayer_times_app/presentation/providers/location_provider.dart';
 import 'location_storage_service.dart';
 
-part 'location_permission_service.g.dart';
+part 'location_service.g.dart';
 
 @riverpod
-LocationPermissionService locationPermissionService(Ref ref) {
-  return LocationPermissionService(ref.read(locationStorageServiceProvider));
+LocationService locationService(Ref ref) {
+  return LocationService(ref.read(locationStorageServiceProvider), ref);
 }
 
-class LocationPermissionService {
+class LocationService {
   final LocationStorageService _storageService;
+  final Ref _ref;
 
-  LocationPermissionService(this._storageService);
+  LocationService(this._storageService, this._ref);
 
   // Check location permission status
   Future<LocationPermissionStatus> checkPermissionStatus() async {
@@ -91,7 +93,8 @@ class LocationPermissionService {
           city = place.locality ?? place.administrativeArea ?? 'Unknown';
           country = place.country ?? 'Unknown';
         }
-      } catch (e) {
+      }
+      catch (e) {
         log('Reverse geocoding failed: $e');
       }
 
@@ -106,6 +109,7 @@ class LocationPermissionService {
 
       // Save location
       await _storageService.saveUserLocation(userLocation);
+      _ref.read(locationStateProvider.notifier).updateLocation(userLocation);
 
       return userLocation;
     } catch (e) {
@@ -117,6 +121,31 @@ class LocationPermissionService {
   // Open app settings for location
   Future<void> openLocationSettings() async {
     await openAppSettings();
+  }
+
+  // Get location from city name and save it
+  Future<UserLocation?> saveLocationByCity(
+      String city, String country) async {
+    try {
+      List<Location> locations =
+          await locationFromAddress('$city, $country');
+      if (locations.isNotEmpty) {
+        final location = locations.first;
+        final userLocation = UserLocation(
+          latitude: location.latitude,
+          longitude: location.longitude,
+          city: city,
+          country: country,
+          lastUpdated: DateTime.now(),
+        );
+        await _storageService.saveUserLocation(userLocation);
+        _ref.read(locationStateProvider.notifier).updateLocation(userLocation);
+        return userLocation;
+      }
+    } catch (e) {
+      log('Geocoding failed: $e');
+    }
+    return null;
   }
 }
 

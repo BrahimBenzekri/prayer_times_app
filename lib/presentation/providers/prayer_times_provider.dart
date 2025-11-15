@@ -1,17 +1,16 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'dart:developer';
+
+import 'package:prayer_times_app/presentation/providers/location_provider.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../services/api_service.dart';
-import '../../../services/location_storage_service.dart';
 import '../../../data/models/prayer_times_model.dart';
 
 part 'prayer_times_provider.g.dart';
 
 @riverpod
 Future<PrayerTimesResponse> prayerTimes(Ref ref) async {
-  final locationStorageService = ref.watch(locationStorageServiceProvider);
+  final userLocation = await ref.watch(locationStateProvider.future);
   final apiService = ref.watch(apiServiceProvider);
-
-  final userLocation = await locationStorageService.getUserLocation();
 
   if (userLocation != null) {
     log(
@@ -33,10 +32,4 @@ Future<PrayerTimesResponse> prayerTimes(Ref ref) async {
     log('--- No user location found, throwing error ---');
     throw Exception('No location data found');
   }
-}
-
-@riverpod
-Future<UserLocation?> userLocation(Ref ref) async {
-  final locationStorageService = ref.watch(locationStorageServiceProvider);
-  return await locationStorageService.getUserLocation();
 }

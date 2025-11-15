@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:prayer_times_app/services/location_service.dart';
 import '../../../core/theme/app_colors.dart';
-import '../../../services/location_permission_service.dart';
 import '../../providers/prayer_times_provider.dart';
 import '../city_search/city_search_page.dart';
 
@@ -109,7 +109,7 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
     });
 
     try {
-      final locationService = ref.read(locationPermissionServiceProvider);
+      final locationService = ref.read(locationServiceProvider);
       final status = await locationService.requestLocation();
 
       switch (status) {
@@ -189,7 +189,7 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
                 onPressed: () async {
                   Navigator.pop(context);
                   await ref
-                      .read(locationPermissionServiceProvider)
+                      .read(locationServiceProvider)
                       .openLocationSettings();
                 },
                 child: const Text('Open Settings'),

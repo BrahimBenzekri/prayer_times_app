@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:prayer_times_app/presentation/providers/location_provider.dart';
 import '../../providers/prayer_times_provider.dart';
 import '../../providers/theme_provider.dart';
 import 'widgets/location_header.dart';
@@ -13,7 +14,7 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final prayerTimesData = ref.watch(prayerTimesProvider);
-    final userLocationData = ref.watch(userLocationProvider);
+    final userLocationData = ref.watch(locationStateProvider);
 
     return Scaffold(
       appBar: AppBar(
