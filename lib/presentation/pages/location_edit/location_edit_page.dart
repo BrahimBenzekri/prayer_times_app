@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:prayer_times_app/presentation/providers/location_provider.dart';
 import 'package:prayer_times_app/services/location_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../providers/prayer_times_provider.dart';
@@ -116,6 +117,7 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
         case LocationPermissionStatus.granted:
           final location = await locationService.getCurrentLocationAndSave();
           if (location != null && mounted) {
+            ref.read(locationStateProvider.notifier).updateLocation(location);
             ref.invalidate(prayerTimesProvider);
             Navigator.of(context).pop();
           }
