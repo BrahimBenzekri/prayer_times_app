@@ -22,7 +22,7 @@ final class LocationServiceProvider
         argument: null,
         retry: null,
         name: r'locationServiceProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -49,4 +49,4 @@ final class LocationServiceProvider
   }
 }
 
-String _$locationServiceHash() => r'5460a28b2b8ef483668e34917187db23ab2c3b4e';
+String _$locationServiceHash() => r'e7330f19b0ad46afe665fbf73e1b2ba697ee3645';
