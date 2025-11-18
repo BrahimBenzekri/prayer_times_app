@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:prayer_times_app/presentation/providers/location_provider.dart';
 import 'package:prayer_times_app/services/location_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../providers/prayer_times_provider.dart';
-import '../city_search/city_search_page.dart';
 
 class LocationEditPage extends ConsumerStatefulWidget {
   const LocationEditPage({super.key});
@@ -78,11 +78,7 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
             const SizedBox(height: 12),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const CitySearchPage(),
-                  ),
-                );
+                context.push('/city-search');
               },
               icon: const Icon(Icons.location_city),
               style: ElevatedButton.styleFrom(
@@ -119,7 +115,7 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
           if (location != null && mounted) {
             ref.read(locationStateProvider.notifier).updateLocation(location);
             ref.invalidate(prayerTimesProvider);
-            Navigator.of(context).pop();
+            context.go('/home');
           }
           break;
         case LocationPermissionStatus.denied:
@@ -158,12 +154,12 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  context.pop();
                   _getCurrentLocation();
                 },
                 child: const Text('Retry'),
@@ -184,12 +180,12 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () async {
-                  Navigator.pop(context);
+                  context.pop();
                   await ref
                       .read(locationServiceProvider)
                       .openLocationSettings();
@@ -212,14 +208,14 @@ class _LocationEditPageState extends ConsumerState<LocationEditPage> {
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () async {
                   await Geolocator.openLocationSettings();
                   if (context.mounted) {
-                    Navigator.pop(context);
+                    context.pop();
                   }
                 },
                 child: const Text('Open Settings'),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../location_edit/location_edit_page.dart';
 
 class LocationHeader extends StatelessWidget {
   final String city;
@@ -14,9 +14,7 @@ class LocationHeader extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const LocationEditPage()),
-          );
+          context.push('/edit-location');
         },
         borderRadius: BorderRadius.circular(8),
         child: Padding(

@@ -1,11 +1,8 @@
-// lib/presentation/pages/location_onboarding/location_onboarding_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
 import 'package:prayer_times_app/services/location_service.dart';
-
-import '../city_search/city_search_page.dart';
-import '../home/home_page.dart';
 
 class LocationOnboardingPage extends ConsumerStatefulWidget {
   const LocationOnboardingPage({super.key});
@@ -205,9 +202,7 @@ class _LocationOnboardingPageState
         case LocationPermissionStatus.granted:
           final location = await locationService.getCurrentLocationAndSave();
           if (location != null && mounted) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
+            context.go('/home');
           }
           break;
         case LocationPermissionStatus.denied:
@@ -254,14 +249,14 @@ class _LocationOnboardingPageState
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  context.pop();
                   _skipForNow();
                 },
                 child: const Text('Search by City'),
               ),
               TextButton(
                 onPressed: () async {
-                  Navigator.pop(context);
+                  context.pop();
                   await ref
                       .read(locationServiceProvider)
                       .openLocationSettings();
@@ -284,12 +279,12 @@ class _LocationOnboardingPageState
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  context.pop();
                   _getCurrentLocation();
                 },
                 child: const Text('Retry'),
@@ -310,12 +305,12 @@ class _LocationOnboardingPageState
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () async {
-                  Navigator.pop(context);
+                  context.pop();
                   await ref
                       .read(locationServiceProvider)
                       .openLocationSettings();
@@ -338,7 +333,7 @@ class _LocationOnboardingPageState
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.pop(),
                 child: const Text('Cancel'),
               ),
               TextButton(
@@ -346,7 +341,7 @@ class _LocationOnboardingPageState
                   // Geolocator provides a helper to open location settings
                   await Geolocator.openLocationSettings();
                   if (context.mounted) {
-                    Navigator.pop(context);
+                    context.pop();
                   }
                 },
                 child: const Text('Open Settings'),
@@ -357,8 +352,6 @@ class _LocationOnboardingPageState
   }
 
   void _skipForNow() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const CitySearchPage()),
-    );
+    context.go('/city-search');
   }
 }
