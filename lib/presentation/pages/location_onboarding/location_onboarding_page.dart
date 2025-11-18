@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prayer_times_app/services/location_service.dart';
+import 'package:salati/services/location_service.dart';
 
 class LocationOnboardingPage extends ConsumerStatefulWidget {
   const LocationOnboardingPage({super.key});

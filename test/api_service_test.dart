@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:prayer_times_app/services/api_service.dart';
+import 'package:salati/services/api_service.dart';
 
 void main() {
   group('API Service Tests', () {

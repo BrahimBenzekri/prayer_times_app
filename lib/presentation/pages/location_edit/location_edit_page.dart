@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prayer_times_app/presentation/providers/location_provider.dart';
-import 'package:prayer_times_app/services/location_service.dart';
+import 'package:salati/presentation/providers/location_provider.dart';
+import 'package:salati/services/location_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../providers/prayer_times_provider.dart';
 

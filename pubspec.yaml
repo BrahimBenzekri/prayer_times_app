@@ -1,4 +1,4 @@
-name: prayer_times_app
+name: salati
 description: "A new Flutter project."
 publish_to: 'none'
 version: 0.1.0
@@ -34,8 +34,15 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   assets:
     - assets/data/
+    - assets/icon/
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"

@@ -2,13 +2,13 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prayer_times_app/presentation/pages/city_search/widgets/city_search_field.dart';
-import 'package:prayer_times_app/presentation/pages/city_search/widgets/country_search_field.dart';
-import 'package:prayer_times_app/presentation/providers/city_search_provider.dart';
-import 'package:prayer_times_app/presentation/providers/location_provider.dart';
-import 'package:prayer_times_app/presentation/providers/prayer_times_provider.dart';
+import 'package:salati/presentation/pages/city_search/widgets/city_search_field.dart';
+import 'package:salati/presentation/pages/city_search/widgets/country_search_field.dart';
+import 'package:salati/presentation/providers/city_search_provider.dart';
+import 'package:salati/presentation/providers/location_provider.dart';
+import 'package:salati/presentation/providers/prayer_times_provider.dart';
 
-import 'package:prayer_times_app/services/location_service.dart';
+import 'package:salati/services/location_service.dart';
 
 class CitySearchPage extends ConsumerStatefulWidget {
   const CitySearchPage({super.key});

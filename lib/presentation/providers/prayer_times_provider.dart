@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:prayer_times_app/presentation/providers/location_provider.dart';
+import 'package:salati/presentation/providers/location_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../../services/api_service.dart';
 import '../../../data/models/prayer_times_model.dart';

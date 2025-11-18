@@ -1,12 +1,12 @@
 import 'package:go_router/go_router.dart';
-import 'package:prayer_times_app/presentation/pages/city_search/city_search_page.dart';
-import 'package:prayer_times_app/presentation/pages/home/home_page.dart';
-import 'package:prayer_times_app/presentation/pages/location_edit/location_edit_page.dart';
-import 'package:prayer_times_app/presentation/pages/location_onboarding/location_onboarding_page.dart';
-import 'package:prayer_times_app/presentation/pages/splash/splash_page.dart';
+import 'package:salati/presentation/pages/city_search/city_search_page.dart';
+import 'package:salati/presentation/pages/home/home_page.dart';
+import 'package:salati/presentation/pages/location_edit/location_edit_page.dart';
+import 'package:salati/presentation/pages/location_onboarding/location_onboarding_page.dart';
+import 'package:salati/presentation/pages/splash/splash_page.dart';
 
 final goRouter = GoRouter(
-  initialLocation: '/onboarding',
+  initialLocation: '/',
   routes: [
     GoRoute(path: '/', builder: (context, state) => const SplashPage()),
     GoRoute(path: '/home', builder: (context, state) => const HomePage()),

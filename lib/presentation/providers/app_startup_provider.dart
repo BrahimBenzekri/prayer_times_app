@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prayer_times_app/presentation/providers/theme_provider.dart';
-import 'package:prayer_times_app/services/location_storage_service.dart';
+import 'package:salati/presentation/providers/theme_provider.dart';
+import 'package:salati/services/location_storage_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter/services.dart';
 
