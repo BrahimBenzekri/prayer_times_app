@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:prayer_times_app/presentation/pages/city_search/widgets/city_search_field.dart';
 import 'package:prayer_times_app/presentation/pages/city_search/widgets/country_search_field.dart';
+import 'package:prayer_times_app/presentation/pages/home/home_page.dart';
 import 'package:prayer_times_app/presentation/providers/city_search_provider.dart';
 import 'package:prayer_times_app/presentation/providers/location_provider.dart';
 import 'package:prayer_times_app/presentation/providers/prayer_times_provider.dart';
@@ -56,8 +57,11 @@ class _CitySearchPageState extends ConsumerState<CitySearchPage> {
           content: Text('Location saved: ${city.name}, ${country.name}'),
         ),
       );
-      log('[CitySearchPage] Navigating back.');
-      Navigator.of(context).pop();
+      log('[CitySearchPage] Navigating to home page.');
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const HomePage()),
+        (Route<dynamic> route) => false,
+      );
     } else {
       log('[CitySearchPage] Country or City is null. Aborting save.');
       setState(() {
